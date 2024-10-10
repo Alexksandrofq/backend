@@ -84,7 +84,7 @@ public class TelaDeCadastroView extends JFrame
         );// Aqui fecha o parâmetro do addActionListener
         
         // Aqui define a width(largura) height(altura) e visibilidade 
-        setSize(250, 600);
+        setSize(550, 600);
         setVisible(true);
 
     }// Aqui fecha o construtor TelaDeCadastro

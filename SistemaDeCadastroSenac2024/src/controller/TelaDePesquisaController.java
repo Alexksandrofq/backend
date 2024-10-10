@@ -30,9 +30,7 @@ public class TelaDePesquisaController extends TelaDePesquisaView {
         TelaDePesquisaModel.primeiroRegistroModel(txtPesquisa.getText());
     }
     public static void registroAnterior() {
-        TelaDePesquisaModel.registroAnteriorModel(txtPesquisa.getText(), txtId.getText(), txtNome.getText(), txtEmail.getText());
-        
-        
+        TelaDePesquisaModel.registroAnteriorModel(txtPesquisa.getText(), txtId.getText(), txtNome.getText(), txtEmail.getText());            
     }
     public static void proximoRegistro() {
         TelaDePesquisaModel.proximoRegistroModel(txtPesquisa.getText(), txtId.getText(), txtNome.getText(), txtEmail.getText());
@@ -45,7 +43,6 @@ public class TelaDePesquisaController extends TelaDePesquisaView {
     public static void limparCamposController(String txt) {
         limparCampos(txt);
     }
-
 
     public static void desabilitarTodos() {
         btnAnterior.setEnabled(false);
@@ -72,8 +69,8 @@ public class TelaDePesquisaController extends TelaDePesquisaView {
         btnProximo.setEnabled(true);
         btnUltimo.setEnabled(true);
     }
-   public static void desabilitarPesquisar() {
-    btnPesquisar.setEnabled(false);
+    public static void desabilitarPesquisar() {
+        btnPesquisar.setEnabled(false);
    }
     
 }   
