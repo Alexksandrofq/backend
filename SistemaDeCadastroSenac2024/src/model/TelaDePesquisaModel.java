@@ -4,8 +4,9 @@ import java.sql.*;
 import controller.*;
 
 public class TelaDePesquisaModel {
-    public static void pesquisarModel(String id, String nome, String textoPesquisa) {
+    public static void pesquisarModel(String textoPesquisa) {
         // try =  tentar
+        // catch = pegar
         // Statement = declaração   
         try {
             Connection conexao = MySQLConnector.conectar();
@@ -17,8 +18,7 @@ public class TelaDePesquisaModel {
                 rstSqlPesquisa.last();// Vai para o ùltimo
                 int rowNumbers = rstSqlPesquisa.getRow(); //Pega a quantidade de linhas
                 rstSqlPesquisa.first();// Volta para primeiro
-
-                stmSqlPesquisa.close();
+               
                 TelaDePesquisaController.notificarUsuario("Legal! Foi(Foram) encontrado(s)" + rowNumbers + "resultados.");
 
                 TelaDePesquisaController.preencherCampos(rstSqlPesquisa.getString("id"), 
@@ -30,11 +30,13 @@ public class TelaDePesquisaModel {
                 if (rowNumbers > 1) {// Se a quantiodade de linhas forem maior que 1, irá habilitar os botôes
                     TelaDePesquisaController.habilitarAvancar();
                 }
+                stmSqlPesquisa.close();
             } else {
                 TelaDePesquisaController.registrarPesquisa();
                 TelaDePesquisaController.desabilitarPesquisar();
-                stmSqlPesquisa.close();
+                
                 TelaDePesquisaController.notificarUsuario("Poxa vida! Não foram encontrados resultados para: \"" + textoPesquisa + "\".");
+                stmSqlPesquisa.close();
             }
             
         } catch (Exception e) {
@@ -71,6 +73,7 @@ public class TelaDePesquisaModel {
     }
     public static void registroAnteriorModel(String idAtual, String nomeAtual, String emailAtual, String textoPesquisa){
         try {
+            TelaDePesquisaController.limparCamposController("Registro anterior posicionado com scuesso.");
             Connection conexao = MySQLConnector.conectar();
             String strSqlProximoRegistro = "select * from `db_senac`.`tbl_senac` where (`nome` like '%" + textoPesquisa + "%' or `email` like '%" + textoPesquisa + "%') and `id` < " + idAtual + " order by `id` desc;";
             Statement stmSqlProximoRegistro = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -91,12 +94,12 @@ public class TelaDePesquisaModel {
             stmSqlProximoRegistro.close();
         } catch (Exception e) {
             TelaDePesquisaController.notificarUsuario("Não foi possível encontrar o próximo registro! Por favor, verifique e tente novamente.");
-            //lblNotificacoes.setText(setHtmlFormat("Não foi possível encontrar o próximo registro! Por favor, verifique e tente novamente."));
             System.err.println("Erro: " + e);
         } 
     }
     public static void proximoRegistroModel(String idAtual, String nomeAtual, String emailAtual, String textoPesquisa) {
         try {
+            TelaDePesquisaController.limparCamposController("Próximo registro posicionado com scuesso.");
             Connection conexao = MySQLConnector.conectar();
             String strSqlProximoRegistro = "select * from `db_senac`.`tbl_senac` where (`nome` like '%" + textoPesquisa + "%' or `email` like '%" + textoPesquisa + "%') and `id` > " + idAtual + " order by `id` asc;";
             Statement stmSqlProximoRegistro = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);//TYPE_SCROLL_INSENSITIVE= para rolar pro lado ; CONCUR_READ_ONLY= que não pode ser habilitado
@@ -125,6 +128,8 @@ public class TelaDePesquisaModel {
     }
     public static void ultimoRegistroModel(String idAtual, String nomeAtual, String emailAtual, String textoPesquisa) {
         try {
+            TelaDePesquisaController.limparCamposController("");
+
             Connection conexao = MySQLConnector.conectar();
             String strSqlProximoRegistro = "select * from `db_senac`.`tbl_senac` where (`nome` like '%" + textoPesquisa + "%' or `email` like '%" + textoPesquisa + "%') and `id` > " + idAtual + " order by `id` desc;";
             Statement stmSqlProximoRegistro = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);//TYPE_SCROLL_INSENSITIVE= para rolar pro lado ; CONCUR_READ_ONLY= que não pode ser habilitado
