@@ -2,7 +2,6 @@ package controller;
 import model.*;
 import view.*;
 
-
 public class TelaDePesquisaController extends TelaDePesquisaView {
     public static void notificarUsuario(String textoNotificacao) {
         lblNotificacoes.setText(setHtmlFormat(textoNotificacao));
@@ -45,15 +44,15 @@ public class TelaDePesquisaController extends TelaDePesquisaView {
     }
 
     public static void desabilitarTodos() {
-        btnAnterior.setEnabled(false);
         btnPrimeiro.setEnabled(false);
+        btnAnterior.setEnabled(false); 
         btnProximo.setEnabled(false);
         btnUltimo.setEnabled(false);
        
     }
     public static void habilitarTodos() {
-        btnAnterior.setEnabled(true);
         btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
         btnProximo.setEnabled(true);
         btnUltimo.setEnabled(true);
        
@@ -61,8 +60,9 @@ public class TelaDePesquisaController extends TelaDePesquisaView {
 
     public static void habilitarVoltar() {
         desabilitarTodos();
-        btnAnterior.setEnabled(true);
         btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
+        
     }
     public static void habilitarAvancar() {
         desabilitarTodos();

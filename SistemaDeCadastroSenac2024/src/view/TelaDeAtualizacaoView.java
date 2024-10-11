@@ -1,11 +1,9 @@
 package view;
 import controller.*;
-
 // Aqui importa as bibliotecas
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
 
 // Aqui define a classe TelaDeAtualização que herderá do JFrame
 public class TelaDeAtualizacaoView extends JFrame

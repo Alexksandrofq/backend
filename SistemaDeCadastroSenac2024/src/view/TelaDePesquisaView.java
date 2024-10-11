@@ -200,7 +200,6 @@ public class TelaDePesquisaView extends JFrame
             }// Aqui fecha o objeto ActionListener
         );
         
-                  
 
         txtPesquisa.addKeyListener( //Escutador chave, iremos sobescrever, incluir no método KeyReleased que ja existe denro do objeto KeyAdapter
             new KeyAdapter() {//KeyAdapter = para receber eventos de teclado
