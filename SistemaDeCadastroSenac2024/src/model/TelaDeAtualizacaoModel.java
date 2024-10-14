@@ -18,14 +18,14 @@ public class TelaDeAtualizacaoModel {
             while (rstSqlPopularIds.next()) {
                 idsTemp.add(rstSqlPopularIds.getString("id"));
             }
-            ids = idsTemp.toArray(new String[0]);
+            TelaDeAtualizacaoController.enviarIds(idsTemp.toArray(new String[0]));
             stmSqlPopularIds.close();        
         } catch (Exception e) {
             TelaDeAtualizacaoController.notificarUsuario("Não foi possível encontrar os ids! Por favor, verifique e tente novamente.");
             System.err.println("Erro: " + e);
         }
     }
-    public static void atualizarCadastroModel(String atualizarId, String atualizarNome String atualizarEmail, String atualizarSenha) {
+    public static void atualizarCadastroModel(String atualizarId, String atualizarNome, String atualizarEmail, String atualizarSenha) {
         try {
             Connection conexao = MySQLConnector.conectar();
             String strSqlAtualizarId = "update `db_senac`.`tbl_senac` set " + atualizarNome + atualizarEmail + atualizarSenha + " where `id` = " + atualizarId + ";";
@@ -41,19 +41,15 @@ public class TelaDeAtualizacaoModel {
             System.err.println("Erro: " + e);
         }
     }
-    public static void atualizarCamposModel() {
+    public static void atualizarCamposModel(String id) {
         try {
             Connection conexao = MySQLConnector.conectar();
             String strSqlAtualizarCampos = "select * from `db_senac`.`tbl_senac` where `id` = " + id + ";";
             Statement stmSqlAtualizarCampos = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);//TYPE_SCROLL_INSENSITIVE= para rolar pro lado ; CONCUR_READ_ONLY= que não pode ser habilitado
             ResultSet rstSqlAtualizarCampos = stmSqlAtualizarCampos.executeQuery(strSqlAtualizarCampos);
             if (rstSqlAtualizarCampos.next()) {
-                txtNome.setText(rstSqlAtualizarCampos.getString("nome"));
-                nomeAtual = txtNome.getText();
-                txtEmail.setText(rstSqlAtualizarCampos.getString("email"));
-                emailAtual = txtEmail.getText();
-                txtSenha.setText(rstSqlAtualizarCampos.getString("senha"));
-                senhaAtual = String.valueOf(txtSenha.getPassword());
+                TelaDeAtualizacaoController.enviarCampos(rstSqlAtualizarCampos.getString("nome"), rstSqlAtualizarCampos.getString("email"), rstSqlAtualizarCampos.getString("senha"));
+              
                 TelaDeAtualizacaoController.notificarUsuario("Campos atualizados com sucesso!");
 
             } else {

@@ -3,7 +3,7 @@ import model.*;
 import view.*;
 
 import javax.swing.*;
-
+ 
 
 
 public class TelaDeRemoverController extends TelaDeRemoverView {
@@ -41,7 +41,7 @@ public class TelaDeRemoverController extends TelaDeRemoverView {
         txtEmail.setText(email);
     }
     public static void enviarIds(String[] idsTemp) {
-        ids =idsTemp;
+        ids = idsTemp;
     }
     public static void notificarUsuario(String txt) {
         lblNotificacoes.setText(setHtmlFormat(txt));

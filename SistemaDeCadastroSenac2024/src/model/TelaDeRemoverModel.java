@@ -7,7 +7,7 @@ import controller.*;
 public class TelaDeRemoverModel {
     public static void popularIdsModel() {
     // try =  tentar
-    // Statement = declaração 
+    // Statement = declaração  
         try {
             ArrayList<String> idsTemp = new ArrayList<>();
             idsTemp.add("Selecione aqui o id");

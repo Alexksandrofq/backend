@@ -8,11 +8,16 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
     public static void popularIds() {
         TelaDeAtualizacaoModel.popularIdsModel();
     }
+
+    public static void enviarIds(String [] idsView) {
+        ids = idsView;
+    }
    
     public static void atualizarId() {
         String atualizarNome = "";
         String atualizarEmail = "";
         String atualizarSenha = "";
+
         if (txtNome.getText().trim().equals(nomeAtual) == false) {
             atualizarNome = "`nome` = '" + txtNome.getText() + "'";
         }
@@ -44,11 +49,20 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
     }
     public static void atualizarCampos(String id) {
         if (cbxId.getSelectedIndex() > 0) {
-            TelaDeAtualizacaoModel.atualizarCamposModel();
+            TelaDeAtualizacaoModel.atualizarCamposModel(String.valueOf(cbxId.getSelectedIndex()));
         } else {
             lblNotificacoes.setText("Selecione um id para continuar.");
             limparCampos();
         }      
+    }
+
+    public static void enviarCampos(String nome, String email, String senha) {
+        txtNome.setText(nome);
+        nomeAtual = txtNome.getText();
+        txtEmail.setText(email);
+        emailAtual = txtEmail.getText();
+        txtSenha.setText(senha);
+        senhaAtual = String.valueOf(txtSenha.getPassword());
     }
    
     public static void notificarUsuario(String txt) {

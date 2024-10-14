@@ -1,7 +1,5 @@
 package view;
 import controller.*;
-
-// Aqui importa as bibliotecas
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -90,7 +88,7 @@ public class TelaDeRemoverView extends JFrame
         add(linha_notificacoes);
 
         // Aqui define o método que adiciona o escutador da ação 
-        btnRemover.addActionListener(
+        btnRemover.addActionListener( 
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
