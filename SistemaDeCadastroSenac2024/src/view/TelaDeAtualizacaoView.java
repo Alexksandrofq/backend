@@ -91,7 +91,7 @@ public class TelaDeAtualizacaoView extends JFrame
 
         btnCancelar = new JButton("Cancelar");
         linha_botoes.add(btnCancelar); 
-        
+         
 
         add(linha_botoes);
 
@@ -159,6 +159,8 @@ public class TelaDeAtualizacaoView extends JFrame
     public static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método setHtmlFormat
+
+    public static TelaDeAtualizacaoView appTelaDeAtualizacaoView;
 
     // Aqui define o método executor main, de 1 parâmetro, argumento do tipo matriz de string, sem retorno, estatico, que sera importado
     //void = sem retorno ou retorno nulo

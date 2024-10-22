@@ -16,7 +16,7 @@ public class TelaDeLoginModel {
             }
             stmSqlLogin.close();   
         } catch (Exception e) { 
-            TelaDeLoginController.notificarUsuario("Hou um problema e não será possível realizar o login agora. Por favor, teste novamente mais tarde.");
+            TelaDeLoginController.notificarUsuario("Houve um problema e não será possível realizar o login agora. Por favor, teste novamente mais tarde.");
             System.err.println("Veja o erro:" + e); 
         } 
     }

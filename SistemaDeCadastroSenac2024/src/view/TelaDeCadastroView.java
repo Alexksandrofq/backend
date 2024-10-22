@@ -14,7 +14,7 @@ public class TelaDeCadastroView extends JFrame
     private final JLabel lblNome;
     private final JTextField txtNome;
 
-    private final JLabel lblEmail;
+    private final JLabel lblEmail; 
     private final JTextField txtEmail;
 
     private final JLabel lblSenha;
@@ -93,6 +93,8 @@ public class TelaDeCadastroView extends JFrame
     private String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método html
+
+    public static TelaDeCadastroView  appTelaDeCadastroView;
 
     // Aqui está definindo o método executor main, com 1 parâmentro, tipo argumento de matriz string, sem retorno, estático e será importado 
     public static void main (String[] args) {

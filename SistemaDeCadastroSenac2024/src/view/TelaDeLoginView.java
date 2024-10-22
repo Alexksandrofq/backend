@@ -4,7 +4,7 @@ import controller.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.sql.*;
+
 
 
 // Aqui está definindo a classe TelaDeLogin que está herdando do JFrame
@@ -49,19 +49,71 @@ public class TelaDeLoginView extends JFrame
     lblNotificacoes = new JLabel("Notifiações"); // Declaração de váriavel notifacacoes
     add(lblNotificacoes);
 
-    btnEntrar.addActionListener(
+    btnEntrar.addActionListener(//Ação de clicar no botão entrar
         // Aqui está definindo o novo objeto 
         new ActionListener() {
             @Override    
             // Aqui está definido o método actionPerformed     
             public void actionPerformed(ActionEvent event) {
+                if (validarCampos() == true)
                 TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
             }
         }
+    );//Aqui fecha a ação btnEntrar.addActionListener
+
+    btnEntrar.addKeyListener(//Quando o botão entrar estiver focado, a ação de clicar no teclado 
+        // Aqui está definindo qual decla = key, o usuario vai usar
+        new KeyAdapter() {
+            @Override      
+            public void keyReleased(KeyEvent event) {//Released: ao soltar
+                if (event.getKeyCode() == 10 && validarCampos() == true) {
+                    TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
+                }
+            }           
+        }
     );
+
+    txtSenha.addKeyListener(
+        new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent event) {
+                if (event.getKeyCode() == 10 && validarCampos() == true) {
+                    TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
+                }
+            }
+        }
+    );
+
+    txtLogin.addKeyListener(
+        new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent event) {
+                if (event.getKeyCode() == 10 && validarCampos() == true) {
+                    TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
+                }
+            }
+        }
+    );
+
+
     // Aqui está definindo o tamanho e visibilidade
-    setSize(162, 200); 
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setSize(162, 600); 
     setVisible(true);   
+}
+
+public boolean validarCampos() {
+    if (txtLogin.getText().trim().length() == 0) {
+        TelaDeLoginController.notificarUsuario("Ops! É necessário digitar um login válido para continuar. Por favor, digite um login e tecle: \"Enter\".");
+        txtLogin.requestFocus();
+        return false;
+    }
+    if (String.valueOf(txtSenha.getPassword()).trim().length() == 0) {
+        TelaDeLoginController.notificarUsuario("Ops! É necessário digitar uma senha válida para continuar. Por favor, digite uma senha e tecle: \"Enter\".");
+        txtSenha.requestFocus();
+        return false;
+    }
+    return true;
 }
 
     public static String setHtmlFormat(String txt) {
@@ -75,7 +127,10 @@ public class TelaDeLoginView extends JFrame
         // Aqui está declarando a variável 
         appTelaDeLoginView = new TelaDeLoginView(); 
         // Aqui está definindo o modo padrão de fechamento, sair ao fechar 
-        appTelaDeLoginView.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //appTelaDeLoginView.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
 }// Aqui fecha a classe
+
+
+//requesfocus: Coloca o curso do teclado piscando no campo ,dando foco ao campo 

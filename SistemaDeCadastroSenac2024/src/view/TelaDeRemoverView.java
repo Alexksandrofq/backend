@@ -145,6 +145,8 @@ public class TelaDeRemoverView extends JFrame
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método setHtmlFormat
 
+    public static TelaDeRemoverView appTelaDeRemoverView;
+
     // Aqui define o método executor main, de 1 parâmetro, argumento do tipo matriz de string, sem retorno, estatico, que sera importado
     //void = sem retorno ou retorno nulo
     public static void main(String[] args) {

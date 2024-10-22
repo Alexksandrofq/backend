@@ -264,6 +264,8 @@ public class TelaDePesquisaView extends JFrame
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método setHtmlFormat
 
+    public static TelaDePesquisaView appTelaDePesquisaView;
+
     // Aqui define o método executor main, de 1 parâmetro, argumento do tipo matriz de string, sem retorno, estatico, que sera importado
     //void = sem retorno ou retorno nulo
     public static void main(String[] args) {
