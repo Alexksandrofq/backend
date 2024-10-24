@@ -6,11 +6,16 @@ import javax.swing.*;
 
 public class TelaDeMenuView extends JFrame {
     public JMenu cadastroMenu;//Tipo menu
+    public JMenu arquivoMenu;
+
     //variaveis tipo item
     public JMenuItem novoItem;
     public JMenuItem pesquisarItem;
     public JMenuItem atualizarItem;
     public JMenuItem removerItem;
+
+    public JMenuItem sobreItem;
+    public JMenuItem sairItem;
 
     public JMenuBar barraDeMenu;
 
@@ -20,11 +25,15 @@ public class TelaDeMenuView extends JFrame {
         super("Tela De Menu");
 
         cadastroMenu = new JMenu("Cadastro");
+        arquivoMenu = new JMenu("Arquivo");
 
         novoItem = new JMenuItem("Novo");
         pesquisarItem = new JMenuItem("Pesquisar");
         atualizarItem = new JMenuItem("Atualizar");
         removerItem = new JMenuItem("Remover");
+
+        sobreItem = new JMenuItem("Sobre");
+        sairItem = new JMenuItem("Sair");
 
         barraDeMenu = new JMenuBar();
 
@@ -35,18 +44,27 @@ public class TelaDeMenuView extends JFrame {
         cadastroMenu.add(atualizarItem);
         cadastroMenu.add(removerItem);
 
+
+        arquivoMenu.add(sobreItem);
+        arquivoMenu.add(sairItem);
+
         cadastroMenu.setMnemonic('C');
         novoItem.setMnemonic('N');
         pesquisarItem.setMnemonic('P');
         atualizarItem.setMnemonic('A');
         removerItem.setMnemonic('R');
 
+        arquivoMenu.setMnemonic('A');
+        sobreItem.setMnemonic('S');
+        sairItem.setMnemonic('r');
+
         barraDeMenu.add(cadastroMenu);//adicionamos o cadastroMenu na barraDeMenu
+        barraDeMenu.add(arquivoMenu);
 
         setJMenuBar(barraDeMenu);
 
         add(lblTelaDeMenu, BorderLayout.CENTER);
- 
+
         novoItem.addActionListener(//escutador de ação
             new ActionListener() {
                 @Override
@@ -60,7 +78,7 @@ public class TelaDeMenuView extends JFrame {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {//Método
-                    JOptionPane.showMessageDialog(null, "Você clicou no item: " + event.getActionCommand());
+                    TelaDeMenuController.abrirTelaDePesquisaView();
                 }
             }
         );
@@ -69,8 +87,7 @@ public class TelaDeMenuView extends JFrame {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {//Método
-                    JOptionPane.showMessageDialog(null, "Você clicou no item: " + event.getActionCommand());
-                }
+                    TelaDeMenuController.abrirTelaDeAtualizacaoView();              }
             }
         );
         
@@ -78,7 +95,26 @@ public class TelaDeMenuView extends JFrame {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {//Método
-                    JOptionPane.showMessageDialog(null, "Você clicou no item: " + event.getActionCommand());
+                    TelaDeMenuController.abrirTelaDeRemoverView();
+                }
+            }
+        );
+
+        sobreItem.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "Sistema de Cadastro Senac 2024");
+                }
+            }
+        );
+
+        sairItem.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.exit(0);
+
                 }
             }
         );

@@ -70,7 +70,7 @@ public class TelaDeLoginView extends JFrame
                     TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
                 }
             }           
-        }
+        } 
     );
 
     txtSenha.addKeyListener(
@@ -97,20 +97,22 @@ public class TelaDeLoginView extends JFrame
 
 
     // Aqui está definindo o tamanho e visibilidade
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setSize(162, 600); 
+    //setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setSize(162, 170); 
     setVisible(true);   
+    
 }
+
 
 public boolean validarCampos() {
     if (txtLogin.getText().trim().length() == 0) {
         TelaDeLoginController.notificarUsuario("Ops! É necessário digitar um login válido para continuar. Por favor, digite um login e tecle: \"Enter\".");
-        txtLogin.requestFocus();
+        txtLogin.requestFocus();//requesfocus: Coloca o curso do teclado piscando no campo ,dando foco ao campo 
         return false;
     }
     if (String.valueOf(txtSenha.getPassword()).trim().length() == 0) {
         TelaDeLoginController.notificarUsuario("Ops! É necessário digitar uma senha válida para continuar. Por favor, digite uma senha e tecle: \"Enter\".");
-        txtSenha.requestFocus();
+        txtSenha.requestFocus();//requesfocus: Coloca o curso do teclado piscando no campo ,dando foco ao campo 
         return false;
     }
     return true;
@@ -127,10 +129,10 @@ public boolean validarCampos() {
         // Aqui está declarando a variável 
         appTelaDeLoginView = new TelaDeLoginView(); 
         // Aqui está definindo o modo padrão de fechamento, sair ao fechar 
-        //appTelaDeLoginView.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        appTelaDeLoginView.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        InterfaceView.definirIcone(appTelaDeLoginView);
     }
 
 }// Aqui fecha a classe
 
 
-//requesfocus: Coloca o curso do teclado piscando no campo ,dando foco ao campo 

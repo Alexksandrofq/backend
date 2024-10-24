@@ -10,7 +10,7 @@ public class TelaDeLoginModel {
             Statement stmSqlLogin = conexao.createStatement();
             ResultSet rstSqlLogin = stmSqlLogin.executeQuery(strSqlLogin);
             if (rstSqlLogin.next()) {
-                TelaDeLoginController.notificarUsuario("Conectado com sucesso!");
+                TelaDeLoginController.abrirTelaDeMenu();
             } else {
                 TelaDeLoginController.notificarUsuario("Login e/ou senha não encontrados! Por favor, verifique o texto novamente");
             }
@@ -22,3 +22,4 @@ public class TelaDeLoginModel {
     }
     
 }
+ 
