@@ -1,6 +1,6 @@
+// Aqui importa as bibliotecas
 package view;
 import controller.*;
-// Aqui importa as bibliotecas
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -12,6 +12,11 @@ public class TelaDeAtualizacaoView extends JFrame
     public static JLabel lblId;
     public static JComboBox<String> cbxId;
     public static String[] ids;
+
+    public static JLabel lblImagem;
+    public static JButton btnCarregarImagem;
+    public static JButton btnRemoverImagem;
+    public static final JTextField txtImagem = new JTextField();
 
     public static JLabel lblNome;
     public static JTextField txtNome;
@@ -29,8 +34,12 @@ public class TelaDeAtualizacaoView extends JFrame
 
     public static JButton btnAtualizar;
     public static JButton btnCancelar;
+    public static JButton btnApagarImg;
 
     public static int tamanhoInputs = 20;
+
+    public static GridBagLayout gbLayout;
+    public static GridBagConstraints gbConstraints;
 
     
 
@@ -38,69 +47,80 @@ public class TelaDeAtualizacaoView extends JFrame
     public TelaDeAtualizacaoView()
     {
         super("Tela de Atualização");// Aqui define o título que aparecerá
-        setLayout(new GridLayout(6, 1, 5, 5));// Aqui define as linhas. colunas, tamanho horizontal e vertical 
-
-        JPanel linha_id = new JPanel(new GridLayout(1, 2));
-        /*JPanel = define a linha e coluna de cada variável*/
+        gbLayout = new GridBagLayout();
+        setLayout(gbLayout);// Aqui define o layout
+        gbConstraints = new GridBagConstraints();
 
         lblId = new JLabel("Id:", SwingConstants.RIGHT);
-        linha_id.add(lblId);// Aqui vai adicionar a linha_id ao lblId
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(lblId, 0, 1,1,1);
+
 
         TelaDeAtualizacaoController.popularIds();
-
         cbxId = new JComboBox<String>(ids);
-        linha_id.add(cbxId);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(cbxId, 0, 2,1,1);
 
-        add(linha_id);// add sozinho =  adicona ao construtor 
 
-        JPanel linha_nome = new JPanel(new GridLayout(1, 2));
+        lblImagem = new JLabel(InterfaceController.imgPadrao);
+        gbConstraints.fill = GridBagConstraints.BOTH;
+        addComponent(lblImagem, 0, 0, 1,  7);
+
+
+        btnCarregarImagem = new JButton("Carregar Imagem");
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(btnCarregarImagem, 1, 1, 1, 1);
+
+
+        btnRemoverImagem = new JButton("Remover Imagem");
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(btnRemoverImagem, 5, 1, 1, 1);
+
 
         lblNome = new JLabel("Nome:", SwingConstants.RIGHT);
-        linha_nome.add(lblNome);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(lblNome, 2, 1, 1, 1);
+     
         txtNome = new JTextField(tamanhoInputs);
-        linha_nome.add(txtNome);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(txtNome, 2,2,1,1);
 
-        add(linha_nome);
-
-        JPanel linha_email = new JPanel(new GridLayout(1, 2));
 
         lblEmail = new JLabel("Email:", SwingConstants.RIGHT);
-        linha_email.add(lblEmail);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(lblEmail, 3, 1 ,1 ,1);
 
         txtEmail = new JTextField(tamanhoInputs);
-        linha_email.add(txtEmail);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        add(linha_email);
+        // add(linha_email);
+        addComponent(txtEmail, 3, 2,1,1);
 
-        JPanel linha_senha = new JPanel(new GridLayout(1, 2));
 
         lblSenha = new JLabel("Senha:", SwingConstants.RIGHT);
-        linha_senha.add(lblSenha);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(lblSenha, 4, 1, 1, 1);
 
         txtSenha = new JPasswordField(tamanhoInputs);
-        linha_senha.add(txtSenha);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-        add(linha_senha);
+        // add(linha_senha);
+        addComponent(txtSenha, 4, 2,1,1);
 
-        JPanel linha_botoes = new JPanel(new GridLayout(1, 2));
-
-        
         btnAtualizar = new JButton("Atualizar");
-
-        linha_botoes.add(btnAtualizar);// Aqui vai adicionar a linha_botoes
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(btnAtualizar, 5, 1, 1, 1);
 
         btnCancelar = new JButton("Cancelar");
-        linha_botoes.add(btnCancelar); 
-         
-
-        add(linha_botoes);
-
-        JPanel linha_notificacoes = new JPanel(new GridLayout(1, 1));
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(btnCancelar, 5, 2, 1, 1);    
 
         lblNotificacoes = new JLabel("Notificações", SwingConstants.CENTER);
-        linha_notificacoes.add(lblNotificacoes);
+        gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+        addComponent(lblNotificacoes, 6, 1, 2, 1);
 
-        add(linha_notificacoes);
+
+
 
         // Aqui define o método que adiciona o escutador da ação 
         btnAtualizar.addActionListener(
@@ -119,8 +139,7 @@ public class TelaDeAtualizacaoView extends JFrame
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    TelaDeAtualizacaoController.limparCampos();
-                                      
+                    TelaDeAtualizacaoController.limparCampos();                                     
                 }// Aqui fecha método actionPerformed
 
             }// Aqui fecha o objeto ActionListener
@@ -133,7 +152,6 @@ public class TelaDeAtualizacaoView extends JFrame
                     public void itemStateChanged(ItemEvent event) {
                         if (event.getStateChange() == ItemEvent.SELECTED) {
                             TelaDeAtualizacaoController.atualizarCampos(cbxId.getSelectedItem().toString());
-                               
                         }// Aqui fecha o evento      
 
                     }// Aqui fecha método itemStateChangedd
@@ -141,11 +159,31 @@ public class TelaDeAtualizacaoView extends JFrame
             }// Aqui fecha o objeto ItemListener
 
         );// Aqui fecha o parâmetro do método cbxId que adiciona o excutador da ação
-        
 
-    
+        btnCarregarImagem.addActionListener(
+            new ActionListener() {
+                @Override
+                    public void actionPerformed(ActionEvent event) {        
+                        TelaDeAtualizacaoController.carregarImagem();    
+                    }// Aqui fecha método actionPerformedd
 
-        setSize(250, 330);// Aqui define a width(largura) e height(altura)        
+            }// Aqui fecha o objeto ActionListener
+
+        );
+
+        btnRemoverImagem.addActionListener(
+            new ActionListener() {
+                @Override
+                    public void actionPerformed(ActionEvent event) {
+                        TelaDeAtualizacaoController.RemoverImagem();   
+
+                    }// Aqui fecha método itemStateChangedd
+
+            }// Aqui fecha o objeto ItemListener
+
+        );
+
+        setSize(500, 300);// Aqui define a width(largura) e height(altura)        
         ImageIcon img = new ImageIcon("./senac-logo.png");// Aqui define a imagem do icon e dentro do parâmetro está indicando a localização da imagem
         setIconImage(img.getImage());
         setVisible(true);// Aqui define a visibilidade, para aparecer a tela
@@ -153,14 +191,33 @@ public class TelaDeAtualizacaoView extends JFrame
 
     }// Aqui fecha o construtor TelaDeAtualizacao  
 
-
-
     // Aqui define o método para deixa a escrita da notificação em html
     public static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método setHtmlFormat
 
     public static TelaDeAtualizacaoView appTelaDeAtualizacaoView;
+
+
+    public void addComponent(Component component, int row, int column, int width, int height) {
+        if (height > 1) {
+            gbConstraints.fill = GridBagConstraints.BOTH;
+        } else {
+            gbConstraints.fill = GridBagConstraints.BOTH;
+        }
+        // definição da localização vertical do elemento na grade
+        gbConstraints.gridy = row;
+        // definição da localização horizontal do elemento na grade
+        gbConstraints.gridx = column;
+        // definição do tamanho da largura do elemento na grade
+        gbConstraints.gridwidth = width;
+        // definição do tamanho da altura do elemento na grade
+        gbConstraints.gridheight = height;
+        // definição da restrição/regra do componente/elemento gráfico
+        gbLayout.setConstraints(component, gbConstraints);//(oq, como)
+        // adicionamento do componente já completo e pronto para renderização
+        add(component);
+    }
 
     // Aqui define o método executor main, de 1 parâmetro, argumento do tipo matriz de string, sem retorno, estatico, que sera importado
     //void = sem retorno ou retorno nulo

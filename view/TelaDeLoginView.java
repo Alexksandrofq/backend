@@ -95,14 +95,12 @@ public class TelaDeLoginView extends JFrame
         }
     );
 
-
     // Aqui está definindo o tamanho e visibilidade
     //setDefaultCloseOperation(EXIT_ON_CLOSE);
     setSize(162, 170); 
     setVisible(true);   
     
 }
-
 
 public boolean validarCampos() {
     if (txtLogin.getText().trim().length() == 0) {
@@ -132,7 +130,6 @@ public boolean validarCampos() {
         appTelaDeLoginView.setDefaultCloseOperation(EXIT_ON_CLOSE);
         InterfaceView.definirIcone(appTelaDeLoginView);
     }
-
 }// Aqui fecha a classe
 
 

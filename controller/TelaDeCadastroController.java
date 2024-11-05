@@ -13,4 +13,5 @@ public class TelaDeCadastroController extends TelaDeCadastroView {
         return retornoUsuario[TelaDeCadastroModel.cadastrarModel(nome, email, senha)];
     }
 
+
 }

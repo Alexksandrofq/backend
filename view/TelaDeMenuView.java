@@ -114,23 +114,17 @@ public class TelaDeMenuView extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.exit(0);
-
                 }
             }
         );
 
-
-
-
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-
     }
-
     public static TelaDeMenuView appTelaDeMenuView;
     public static void main(String[] args){
         appTelaDeMenuView = new TelaDeMenuView();
+        appTelaDeMenuView.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
 }

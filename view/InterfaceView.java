@@ -1,10 +1,9 @@
 package view;
 import javax.swing.*;
+import controller.*;
 import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
-
-
 
 public class InterfaceView extends JFrame {
     public static void definirIcone(JFrame frame) {
@@ -16,6 +15,10 @@ public class InterfaceView extends JFrame {
             System.err.println("Erro: " + e);
         }
         
+    }
+
+    public static void removerImagensInuteis() {
+        InterfaceController.verificarApagarImagensInuteis();
     }
     
 }

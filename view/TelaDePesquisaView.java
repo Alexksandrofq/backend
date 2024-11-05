@@ -179,6 +179,7 @@ public class TelaDePesquisaView extends JFrame
             }// Aqui fecha o objeto ActionListener
 
         );
+        
         btnProximo.addActionListener(
             new ActionListener() {
                 @Override
@@ -189,6 +190,7 @@ public class TelaDePesquisaView extends JFrame
                 }
             }
         );
+
         btnUltimo.addActionListener(
             new ActionListener() {
                 @Override
@@ -218,21 +220,18 @@ public class TelaDePesquisaView extends JFrame
                             limparCampos("Digite algo para continuar.");                       
                         }
                     }// Aqui fecha o else
-                   
-                }// Aqui fecha o método keyReleased(
+
+                }// Aqui fecha o método keyReleased
 
             }// Aqui fecha o objeto KeyAdapter
             
-        );// Aqui fecha o método addKeyListener
-
-    
+        );// Aqui fecha o método addKeyListener  
 
         setSize(250, 380);// Aqui define a width(largura) e height(altura)
         setVisible(true);// Aqui define a visibilidade, para aparecer a tela  
         txtPesquisa.requestFocus();  
 
     }// Aqui fecha o construtor TelaDePesquisa  
-
 
     public static boolean ntfCampoVazio() {
         if (txtPesquisa.getText().trim().length() <= 0) {// se o úsuario clicar em pesquisar sem ter escrito algo
@@ -256,9 +255,7 @@ public class TelaDePesquisaView extends JFrame
         if (notificacao.trim().length() > 0) {
             lblNotificacoes.setText(setHtmlFormat(notificacao));
         }
-
     }
-
     // Aqui define o método para deixa a escrita da notificação em html
     public static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
@@ -272,5 +269,9 @@ public class TelaDePesquisaView extends JFrame
         TelaDePesquisaView appTelaDePesquisaView = new TelaDePesquisaView();
         appTelaDePesquisaView.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }// Aqui fecha o método executor
+
+    /*
+     * ação de abrir
+     */
 
 }// Aqui fecha a classe TelaDePesqusa

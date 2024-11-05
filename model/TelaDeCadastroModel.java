@@ -1,6 +1,12 @@
 package model;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
+
+import javax.swing.JFileChooser;
+
 import controller.*;
 
 public class TelaDeCadastroModel {
@@ -31,4 +37,5 @@ public class TelaDeCadastroModel {
             return 1;
         }
     }
+    
 }

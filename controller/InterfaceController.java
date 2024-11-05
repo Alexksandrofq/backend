@@ -1,0 +1,47 @@
+package controller;
+import model.*;
+import view.*;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+
+
+public class InterfaceController extends InterfaceView {
+    public static final String localViewImgFolder = System.getProperty("user.dir")//variavel local, vai localizar onde está a imagem 
+        + "\\"
+        + "src"
+        + "\\"
+        + "view"
+        + "\\"
+        + "img";
+
+    public static final String localViewFolder = System.getProperty("user.dir")
+        + "\\"
+        + "src"
+        + "\\"
+        + "view";
+
+    public static final Icon imgPadrao = new ImageIcon(new ImageIcon(localViewFolder + "\\senac-logo.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+
+    public static void verificarApagarImagensInuteis() {
+        final File folder = new File(localViewImgFolder);
+        ArrayList<String> strImagens = listFilesForFolder(folder);
+        InterfaceModel.validarImagens(strImagens);
+    }
+
+    public static ArrayList<String> listFilesForFolder(final File folder) {
+        ArrayList<String> strFiles = new ArrayList<String>();
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listFilesForFolder(fileEntry);
+            } else {
+                strFiles.add(fileEntry.getName());
+            }
+        } 
+        return strFiles;
+    }
+
+    public static String gerarNomeAleatorio() {
+        return String.format("file-%s", Math.random());
+    }   
+}

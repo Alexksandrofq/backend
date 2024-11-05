@@ -20,6 +20,10 @@ public class TelaDeCadastroView extends JFrame
     private final JLabel lblSenha;
     private final JPasswordField txtSenha;
 
+    private final JLabel lblImg;
+
+    private final JButton btnFoto;
+
     private final JButton btnCadastrar;
 
     private final JLabel lblNotificacoes;
@@ -28,7 +32,7 @@ public class TelaDeCadastroView extends JFrame
     public TelaDeCadastroView() 
     {
         super("Tela De Cadastro");// Aqui Declara o título da aba
-        setLayout(new GridLayout(4,2,5,5));// Aqui define o layout, linhas, colunas, 
+        setLayout(new GridLayout(5,2,5,5));// Aqui define o layout, linhas, colunas, 
 
         lblNome = new JLabel("Nome:");// Declaração de váriavel
         add(lblNome);
@@ -44,6 +48,13 @@ public class TelaDeCadastroView extends JFrame
         add(lblSenha);
         txtSenha = new JPasswordField(10);
         add(txtSenha);
+
+        lblImg = new JLabel("Adicionar Foto", SwingConstants.CENTER);
+        add(lblImg);
+
+        btnFoto = new JButton("Selecionar arquivo");
+        add(btnFoto);
+
 
         btnCadastrar = new JButton("Cadastrar");
         add(btnCadastrar);
@@ -82,6 +93,9 @@ public class TelaDeCadastroView extends JFrame
             }// Aqui fecha o novo objeto ActionListener
 
         );// Aqui fecha o parâmetro do addActionListener
+
+
+
         
         // Aqui define a width(largura) height(altura) e visibilidade 
         setSize(550, 600);
@@ -101,5 +115,10 @@ public class TelaDeCadastroView extends JFrame
         TelaDeCadastroView appTelaDeCadastroView = new TelaDeCadastroView();// Declaração de variável 
         appTelaDeCadastroView.setDefaultCloseOperation(EXIT_ON_CLOSE);// Aqui Define o fechamento padrão, sair ao fechar 
     }// Aqui fecha o método executor
+
+
+    /*
+     * ação copiar
+     */
 
 }// Aqui fecha a classe TelaDeCadastro

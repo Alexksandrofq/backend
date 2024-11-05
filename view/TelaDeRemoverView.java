@@ -117,8 +117,7 @@ public class TelaDeRemoverView extends JFrame
                 @Override
                     public void itemStateChanged(ItemEvent event) {
                         if (event.getStateChange() == ItemEvent.SELECTED) {
-                            TelaDeRemoverController.atualizarCampos( false);
-                               
+                            TelaDeRemoverController.atualizarCampos( false);                             
                         }// Aqui fecha o evento      
 
                     }// Aqui fecha método itemStateChangedd
@@ -153,5 +152,10 @@ public class TelaDeRemoverView extends JFrame
         TelaDeRemoverView appTelaDeRemoverView = new TelaDeRemoverView();
         appTelaDeRemoverView.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }// Aqui fecha o método executor
+
+    /*
+     * ação open
+     * ação delete
+     */
 
 }// Aqui fecha a classe TeladeRemover
