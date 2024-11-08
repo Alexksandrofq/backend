@@ -1,66 +1,81 @@
+// Aqui importa as biblitecas
 package view;
 import controller.*;
-import model.MySQLConnector;
-
-// Aqui importa as biblitecas
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.sql.*;
+
 
 // Aqui está definindo a classe TelaDeCadastro que está herdando do JFrame
 public class TelaDeCadastroView extends JFrame
 {   //Aqui está declarando as váriaveis 
-    private final JLabel lblNome;
-    private final JTextField txtNome;
+    public static JLabel lblImagem;
+    public static String nomeDoArquivo;
 
-    private final JLabel lblEmail; 
-    private final JTextField txtEmail;
+    public static JLabel lblNome;
+    public static JTextField txtNome;
 
-    private final JLabel lblSenha;
-    private final JPasswordField txtSenha;
+    public static JLabel lblEmail; 
+    public static JTextField txtEmail;
 
-    private final JLabel lblImg;
+    public static JLabel lblSenha;
+    public static JPasswordField txtSenha;
 
-    private final JButton btnFoto;
+    public static JLabel lblImg;
 
-    private final JButton btnCadastrar;
+    public static JButton btnFoto;
 
-    private final JLabel lblNotificacoes;
+    public static JButton btnCadastrar;
+
+    public static JButton btnCarregar;
+    public static JButton btnRemover;
+
+    public static JLabel lblNotificacoes;
+
+    public static GridBagLayout gbLayout;
+    public static GridBagConstraints gbConstraints;
 
     // Aqui define o construtor TelaDeCadastro
     public TelaDeCadastroView() 
-    {
+    { 
         super("Tela De Cadastro");// Aqui Declara o título da aba
-        setLayout(new GridLayout(5,2,5,5));// Aqui define o layout, linhas, colunas, 
+        gbLayout = new GridBagLayout();
+        setLayout(gbLayout);// Aqui define o layout, linhas, colunas
+        gbConstraints = new GridBagConstraints();
 
-        lblNome = new JLabel("Nome:");// Declaração de váriavel
-        add(lblNome);
+        lblImagem = new JLabel("", SwingConstants.CENTER);
+        lblImagem.setIcon(InterfaceController.imgPadrao);
+        addComponent(lblImagem, 0, 0, 2, 2);
+
+        lblNome = new JLabel("Nome:");
+        addComponent(lblNome, 3, 0, 1, 1);
+
         txtNome = new JTextField(10);
-        add(txtNome); //Adicione a váriavel
+        addComponent(txtNome, 3, 1, 1, 1);
 
         lblEmail = new JLabel("Email:");
-        add(lblEmail);
+        addComponent(lblEmail, 4, 0, 1, 1);
+
         txtEmail = new JTextField(10);
-        add(txtEmail);
+        addComponent(txtEmail, 4, 1, 1, 1);
 
         lblSenha = new JLabel("Senha:");
-        add(lblSenha);
+        addComponent(lblSenha, 5, 0, 1, 1);
+
         txtSenha = new JPasswordField(10);
-        add(txtSenha);
-
-        lblImg = new JLabel("Adicionar Foto", SwingConstants.CENTER);
-        add(lblImg);
-
-        btnFoto = new JButton("Selecionar arquivo");
-        add(btnFoto);
-
+        addComponent(txtSenha, 5, 1, 1, 1);
 
         btnCadastrar = new JButton("Cadastrar");
-        add(btnCadastrar);
+        addComponent(btnCadastrar, 6, 0, 2, 1);
+
+        btnCarregar = new JButton("Carregar");
+        addComponent(btnCarregar, 2, 0, 1, 1);
+
+        btnRemover = new JButton("Remover");
+        addComponent(btnRemover, 2, 1, 1, 1);
 
         lblNotificacoes = new JLabel("Notificações", SwingConstants.CENTER);
-        add(lblNotificacoes);
+        addComponent(lblNotificacoes, 7, 0, 2, 1);
 
         // Aqui define o método que adiciona o escutador da ação 
         btnCadastrar.addActionListener(
@@ -74,14 +89,14 @@ public class TelaDeCadastroView extends JFrame
                         txtNome.requestFocus();
                         return;
                     }
-                    if (txtEmail.getText().trim().length() <=0) {
-                        lblNotificacoes.setText(setHtmlFormat("É necessário digitar um Email para o cadastro. Por favor, digite um email e tente novamente."));
+                    if (txtEmail.getText().trim().length() <= 0) {
+                        lblNotificacoes.setText(setHtmlFormat("É necessário digitar um Email para o cadastro. Por favor, digite um Email e tente novamente."));
                         txtEmail.requestFocus();
                         return;
                     }
                     // Aqui está transformando a senha em uma string, utilizando o valueOf
                     if (String.valueOf(txtSenha.getPassword()).trim().length() <= 0) {
-                        lblNotificacoes.setText(setHtmlFormat("É necessário digitar uma Senha para o cadastro. Por favor, digite uma senha e tente novamente."));
+                        lblNotificacoes.setText(setHtmlFormat("É necessário digitar uma Senha para o cadastro. Por favor, digite uma Senha e tente novamente."));
                         txtSenha.requestFocus();// Aqui Força o condutor do teclado 
                         return;
                     }
@@ -94,31 +109,74 @@ public class TelaDeCadastroView extends JFrame
 
         );// Aqui fecha o parâmetro do addActionListener
 
+        btnCarregar.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    TelaDeCadastroController.carregarImagem();
+                }
+            }
+        );
 
-
+        btnRemover.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    TelaDeCadastroController.removerImagem();
+                }
+            }
+        );
         
         // Aqui define a width(largura) height(altura) e visibilidade 
-        setSize(550, 600);
+        setSize(220, 280);
         setVisible(true);
 
     }// Aqui fecha o construtor TelaDeCadastro
+    public void addComponent(Component component, int row, int column, int width, int height) {
+        try {
+            if (height > 1 && height > 1) {
+                gbConstraints.fill = GridBagConstraints.BOTH;
+            } else if (height > 1) {
+                gbConstraints.fill = GridBagConstraints.VERTICAL;
+            } else {
+                gbConstraints.fill = GridBagConstraints.HORIZONTAL;
+            }
+
+            gbConstraints.gridy = row;
+            gbConstraints.gridx = column;
+            gbConstraints.gridwidth = width;
+            gbConstraints.gridheight = height;
+            gbLayout.setConstraints(component, gbConstraints);
+            add(component);
+        } catch (Exception e) {
+            System.err.println("Erro: " + e);
+        }
+    }
+    public static void notificarUsuario(String txt) {
+        lblNotificacoes.setText(setHtmlFormat(txt));
+    }
 
     // Aqui Define o método html
-    private String setHtmlFormat(String strTexto) {
+    private static String setHtmlFormat(String strTexto) {
         return "<html><body>" + strTexto + "</body></html>";
     }// Aqui fecha o método html
 
-    public static TelaDeCadastroView  appTelaDeCadastroView;
+    public static TelaDeCadastroView appTelaDeCadastroView;
 
     // Aqui está definindo o método executor main, com 1 parâmentro, tipo argumento de matriz string, sem retorno, estático e será importado 
-    public static void main (String[] args) {
-        TelaDeCadastroView appTelaDeCadastroView = new TelaDeCadastroView();// Declaração de variável 
+    public static void main(String[] args) {
+        appTelaDeCadastroView = new TelaDeCadastroView();// Declaração de variável 
         appTelaDeCadastroView.setDefaultCloseOperation(EXIT_ON_CLOSE);// Aqui Define o fechamento padrão, sair ao fechar 
+
+        appTelaDeCadastroView.getRootPane().addComponentListener(
+            new ComponentAdapter() {
+                public void componentResized(ComponentEvent e) {
+                    int larguraTela = appTelaDeCadastroView.getWidth();
+                    int alturaTela = appTelaDeCadastroView.getHeight();
+                    notificarUsuario(String.format("Largura: %s, Altura: %s", larguraTela, alturaTela));
+                }
+            }
+        );
     }// Aqui fecha o método executor
-
-
-    /*
-     * ação copiar
-     */
 
 }// Aqui fecha a classe TelaDeCadastro

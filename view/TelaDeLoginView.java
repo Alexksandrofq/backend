@@ -27,7 +27,7 @@ public class TelaDeLoginView extends JFrame
 {
     
     super("Tela de Login"); // Aqui está definindo o título que aparecerá em cima 
-    setLayout(new FlowLayout()); // Aqui para definir o layout, que será responsivo, por causa do flow
+    setLayout(new GridLayout(6,1,5,5)); // Aqui para definir o layout, que será responsivo, por causa do flow
 
     lblLogin = new JLabel("Login:"); // Declaração de váriavel, Login
     add(lblLogin);
@@ -46,7 +46,7 @@ public class TelaDeLoginView extends JFrame
 
 
     add(new JLabel(" "));
-    lblNotificacoes = new JLabel("Notifiações"); // Declaração de váriavel notifacacoes
+    lblNotificacoes = new JLabel("Notificações", SwingConstants.CENTER); // Declaração de váriavel notifacacoes
     add(lblNotificacoes);
 
     btnEntrar.addActionListener(//Ação de clicar no botão entrar
@@ -55,8 +55,9 @@ public class TelaDeLoginView extends JFrame
             @Override    
             // Aqui está definido o método actionPerformed     
             public void actionPerformed(ActionEvent event) {
-                if (validarCampos() == true)
+                if (validarCampos() == true) {
                 TelaDeLoginController.fazerLoginController(txtLogin.getText(), String.valueOf(txtSenha.getPassword()));
+                }
             }
         }
     );//Aqui fecha a ação btnEntrar.addActionListener

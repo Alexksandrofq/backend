@@ -3,7 +3,7 @@ package controller;
 import view.*;
 
 import java.awt.event.*;
-import model.*;
+
 
 public class TelaDeMenuController extends TelaDeMenuView {
     public static void abrirTelaDeCadastroView() {

@@ -15,10 +15,10 @@ public class TelaDeRemoverView extends JFrame
 
     public static JLabel lblNome;
     public static JTextField txtNome;
-   
+
     public static JLabel lblEmail;
     public static JTextField txtEmail;
-   
+
     public static JLabel lblNotificacoes;
 
     public static JButton btnRemover;
@@ -26,7 +26,6 @@ public class TelaDeRemoverView extends JFrame
 
     public static int tamanhoInputs = 20;
 
-    
 
     // Aqui define o construtor TelaDeRemover()
     public TelaDeRemoverView()

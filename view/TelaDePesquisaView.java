@@ -29,8 +29,6 @@ public class TelaDePesquisaView extends JFrame
     public static JButton btnProximo;
     public static JButton btnUltimo;
 
-    public static JButton btnHistorico;
-
     public static JLabel lblNotificacoes;
 
     public static int tamanhoInputs = 20;

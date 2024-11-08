@@ -1,13 +1,8 @@
 package model;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 
-import javax.swing.JFileChooser;
 
-import controller.*;
 
 public class TelaDeCadastroModel {
     public static int cadastrarModel(String nome, String email, String senha) {

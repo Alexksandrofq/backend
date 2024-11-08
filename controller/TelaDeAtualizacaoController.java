@@ -10,7 +10,7 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
         TelaDeAtualizacaoModel.popularIdsModel();
     }
 
-    public static void enviarIds(String [] idsView) {
+    public static void enviarIds(String[] idsView) {
         ids = idsView;
     } 
     public static void atualizarId() {
@@ -48,9 +48,9 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
             if (atualizarNome.length() > 0 || atualizarEmail.length() > 0 || atualizarSenha.length() > 0 || atualizarImagem.length() > 0) {
                 TelaDeAtualizacaoModel.atualizarCadastroModel(idAtual, atualizarNome, atualizarEmail, atualizarSenha, atualizarImagem);
             } else {
-                lblNotificacoes.setText("Não foram encontrados alterações para atualizar o id " + idAtual);
+                lblNotificacoes.setText("Não foram encontradas alterações para atualizar o id " + idAtual);
             }
-        } catch ( Exception e) {
+        } catch (Exception e) {
             lblNotificacoes.setText(setHtmlFormat("Não foi possível atualizar o id! Por favor, verifique e tente novamente."));
             System.err.println("Erro: " + e);
         }
@@ -119,13 +119,13 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
             Path pathDestination = Paths.get(folderFullPath + "\\" + newFileName);
             if (fileFullPath.length() > 0 && folderFullPath.length() > 0) {
                 Files.copy(pathOrigin, pathDestination, REPLACE_EXISTING);//REPLACE_EXISTING= se hover, substitua 
-                System.out.println("Arquivo" + fileName + "copiado/colado com sucesso.");
+                System.out.println("Arquivo " + fileName + " copiado/colado com sucesso!");
             } else {
-                System.out.println("Ops! Não foi possível copiar o arquivo. Por favor, verifique e tente novamente mais tarde.");
+                System.out.println("Ops! Não foi possível copiar o arquivo. Por favor, verifique e tente novamente.");
             }
 
         } catch (Exception e) {
-            System.out.println("Não foi possível copiar o arquivo.");
+            System.err.println("Não foi possível copiar o arquivo! Tente novamente mais tarde.");
         }
 
         Icon imgCarregada = new ImageIcon(InterfaceController.localViewImgFolder + "\\" + fileName);
@@ -135,7 +135,7 @@ public class TelaDeAtualizacaoController extends TelaDeAtualizacaoView {
     }
     
 
-    public static void RemoverImagem(){
+    public static void removerImagem() {
         //
     }
     
